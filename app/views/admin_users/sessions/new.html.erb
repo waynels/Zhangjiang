@@ -1,0 +1,45 @@
+<style>
+.login,
+.image {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url(<%= asset_path('admin_user/bg.jpg') %>);
+  background-size: cover;
+  background-position: center center;
+}
+</style>
+
+<div class="container-fluid">
+  <div class="row no-gutter">
+    <div class="col-md-6 d-none d-md-flex bg-image"></div>
+      <div class="col-md-6 bg-light">
+        <div class="login d-flex align-items-center py-5">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-10 col-xl-7 mx-auto">
+                <h3 class="display-6">登录张江管理后台</h3>
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <div class="form-group mb-3">
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control rounded-pill border-0 shadow-sm px-4", placeholder: "Email address"%>
+                  </div>
+                  <div class="form-group mb-3">
+                    <%= f.password_field :password, autocomplete: "current-password", class: "form-control rounded-pill border-0 shadow-sm px-4 text-primary", placeholder: "Password" %>
+                  </div>
+                  <% if devise_mapping.rememberable? %>
+                    <div class="custom-control custom-checkbox mb-3">
+                      <%= f.check_box :remember_me, class: "custom-control-input" %>
+                      <%= f.label :remember_me, class: "custom-control-label" %>
+                    </div>
+                  <% end %>
+
+                  <%= f.submit "登录", class:"btn btn-lg btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm col-4" %>
+                <% end %>
+              </div>
+            </div>
+          </div><!-- End -->
+        </div>
+      </div><!-- End -->
+  </div>
+</div>
