@@ -31,10 +31,10 @@ set :puma_preload_app, true
 set :puma_worker_timeout, nil
 set :puma_init_active_record, true  # Change to false when not using ActiveRecord
 
-set :sidekiq_config, 'config/sidekiq.yml'
+# set :sidekiq_config, 'config/sidekiq.yml'
 
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', '.bundle', 'public/system', 'public/uploads'
-append :linked_files, 'config/master.key', '.env', 'public/MP_verify_70mYMwUpBt5huvxV.txt'
+append :linked_files, 'config/master.key', '.env'
 
 # Default value for :pty is false
 # set :pty, true

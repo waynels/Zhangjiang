@@ -6,7 +6,7 @@ ruby '3.0.6'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.7', '>= 6.1.7.7'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', '~> 1.4'
+# gem 'sqlite3', '~> 1.4'
 gem 'pg', '~> 1.1'
 
 # Use Puma as the app server
@@ -32,6 +32,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'rails_admin', '~> 2.0'
 gem 'bootstrap', '~> 5.1.3'
+# gem 'sidekiq', '~> 6.1.3'
+gem 'rack-cors'
+gem 'whenever', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -49,7 +52,8 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem "capistrano-db-tasks", require: false
   gem 'capistrano-sidekiq', '~> 2.3'
-
+  gem 'ed25519', '>= 1.2', '< 2.0'
+  gem 'bcrypt_pbkdf', '>= 1.0', '< 2.0'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
   # Display performance information such as SQL time and flame graphs for each request in your browser.
