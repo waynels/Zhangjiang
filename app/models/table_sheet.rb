@@ -1,0 +1,2 @@
+class TableSheet < ApplicationRecord
+end

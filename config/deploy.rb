@@ -2,7 +2,7 @@
 lock "~> 3.19.1"
 
 set :application, "Zhangjiang"
-set :repo_url, "git@github.com:SyncedPSI/Zhangjiang.git"
+set :repo_url, "git@github.com:waynels/Zhangjiang.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
