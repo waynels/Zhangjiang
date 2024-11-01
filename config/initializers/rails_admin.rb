@@ -26,6 +26,45 @@ RailsAdmin.config do |config|
   ## == Gravatar integration ==
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
+  #
+  config.model 'FeishuExcelImport' do
+    configure :enterprise_status, :enum do
+      enum do
+        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
+      end
+    end
+    configure :product_status, :enum do
+      enum do
+        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
+      end
+    end
+    configure :graph_status, :enum do
+      enum do
+        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
+      end
+    end
+    configure :innovation_status, :enum do
+      enum do
+        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
+      end
+    end
+    configure :round_status, :enum do
+      enum do
+        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
+      end
+    end
+    configure :talent_status, :enum do
+      enum do
+        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
+      end
+    end
+    configure :trend_status, :enum do
+      enum do
+        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
+      end
+    end
+  end
+
 
   config.actions do
     dashboard                     # mandatory

@@ -1,0 +1,13 @@
+zh-CN:
+  activerecord:
+    models:
+      admin_user: 超级管理员
+      enterprise_field_record: 企业信息
+      talent_field_record: 重点企业人才信息
+      round_field_record: 重点企业融资信息
+      product_field_record: 重点企业产品信息
+      trend_field_record: 产业动态
+      innovation_field_record: 产业创新分析
+      graph_field_record: 产业图谱企业记录
+      macro_field_record: 产业宏观分析
+      feishu_excel_import: 飞书源文档导入
