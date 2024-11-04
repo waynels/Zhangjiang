@@ -4,11 +4,9 @@ class EnterpriseFieldRecord < ApplicationRecord
   has_many :product_field_records, class_name: "ProductFieldRecord", foreign_key: "enterprise_record_id", primary_key: :record_id
   has_many :grahp_field_records, class_name: "GraphFieldRecord", foreign_key: "enterprise_record_id", primary_key: :record_id
 
-
   def info
     { code: code, name: name }
   end
-
 
   def talents_info
     { code: code, name: name, "talents": talent_field_records.map(&:base_fields) }

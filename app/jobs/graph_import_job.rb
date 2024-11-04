@@ -13,9 +13,14 @@ class GraphImportJob < ApplicationJob
       begin
         field = GraphFieldRecord.find_or_initialize_by(record_id: row[0])
         area = areas[row[7]]
-        body = {"name":row[1],"level1": row[3], "level2": row[4], "title": row[5], area: area }
-        field.update(table_id: "tbltzsmAUdkoSJk7", base_fields: body, enterprise_record_id: row[2])
+        enterprise = EnterpriseFieldRecord.find_by(record_id: row[2])
+        if enterprise.present?
+          body = {"title": row[5], area: area }.merge(enterprise.try(:info).to_hash)
+        else
+          body = {"title": row[5], area: area }
+        end
         p body
+        field.update(table_id: "tbltzsmAUdkoSJk7", "level1": row[3], "level2": row[4], base_fields: body, enterprise_record_id: row[2])
       rescue ActiveRecord::RecordInvalid => exception
         status = 99
         import.remark = import.remark + "#{row}#{exception.message}"

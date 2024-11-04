@@ -65,6 +65,30 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'EnterpriseFieldRecord' do
+    configure :base_fields, :serialized
+  end
+  config.model 'GraphFieldRecord' do
+    configure :base_fields, :serialized
+  end
+  config.model 'InnovationFieldRecord' do
+    configure :base_fields, :serialized
+  end
+  config.model 'ProductFieldRecord' do
+    configure :base_fields, :serialized
+  end
+  config.model 'RoundFieldRecord' do
+    configure :base_fields, :serialized
+  end
+  config.model 'TalentFieldRecord' do
+    configure :base_fields, :serialized
+  end
+  config.model 'TrendFieldRecord' do
+    configure :base_fields, :serialized
+  end
+  config.model 'IndustryAnalysisTask' do
+    configure :data, :serialized
+  end
 
   config.actions do
     dashboard                     # mandatory

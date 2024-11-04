@@ -38,7 +38,7 @@ class IndustryAnalysisTask < ApplicationRecord
     { "sector": "人工智能", "batch": batch, articles: fields.map(&:article) }
   end
 
-  def data_map
+  def data_map_json_data
     enterprise_ids = EnterpriseFieldRecord.where(batch: batch).pluck(:record_id)
     fields = GraphFieldRecord.where(enterprise_record_id: enterprise_ids)
     types = fields.group_by(&:level1).map do |level, items|

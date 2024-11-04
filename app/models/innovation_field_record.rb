@@ -1,11 +1,6 @@
 class InnovationFieldRecord < ApplicationRecord
   def article
-    base_fields.merge(enterprises: enterprises)
-  end
-
-  def enterprises
-    return [] if enterprise_record_id.present?
-    EnterpriseFieldRecord.where(record_id: enterprise_record_id.split(',')).map(&:info)
+    base_fields
   end
 end
 

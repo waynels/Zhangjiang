@@ -22,6 +22,21 @@ class FeishuExcelService
     end
   end
 
+  def batch_update(app_token, table_id, records)
+    url = API_BASE + "/bitable/v1/apps/#{app_token}/tables/#{table_id}/records/batch_update"
+
+    body = JSON.parse(records)
+    authorization = "Bearer #{feishu_tenant_access_token}"
+    p authorization
+    response = server_http_client(url, :POST, body, authorization)
+    if response.code == '200'
+      body = JSON.parse(response.body)
+      body["data"]
+    else
+      p 'get table error'
+    end
+  end
+
   def tenant_access_token
     url = API_BASE + "/auth/v3/tenant_access_token/internal"
 
