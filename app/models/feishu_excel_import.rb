@@ -13,13 +13,13 @@ class FeishuExcelImport < ApplicationRecord
 
   def begin_import_job
     file_path = excel_path
-    EnterpriseImportJob.perform_later(id, file_path)
-    TalentImportJob.perform_later(id, file_path)
-    RoundImportJob.perform_later(id, file_path)
-    ProductImportJob.perform_later(id, file_path)
-    TrendImportJob.perform_later(id, file_path)
-    InnovationImportJob.perform_later(id, file_path)
-    GraphImportJob.perform_later(id, file_path)
+    ::EnterpriseImportJob.perform_later(id, file_path)
+    ::TalentImportJob.perform_later(id, file_path)
+    ::RoundImportJob.perform_later(id, file_path)
+    ::ProductImportJob.perform_later(id, file_path)
+    ::TrendImportJob.perform_later(id, file_path)
+    ::InnovationImportJob.perform_later(id, file_path)
+    ::GraphImportJob.perform_later(id, file_path)
   end
 
   def excel_path
