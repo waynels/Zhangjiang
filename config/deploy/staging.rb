@@ -1,6 +1,6 @@
 server '39.106.230.231', user: 'www', roles: %w[app db web], primary: true
 
-# set :sidekiq_service_unit_user, :user
+set :sidekiq_service_unit_user, :user
 set :rails_env, 'staging'
 set :branch, 'main'
 set :stage, :staging

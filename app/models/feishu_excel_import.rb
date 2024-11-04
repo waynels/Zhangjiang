@@ -26,7 +26,7 @@ class FeishuExcelImport < ApplicationRecord
     if Rails.env.development?
       file.path
     else
-      Rails.root.join("public/#{file.path}")
+      file.path
     end
   end
 end
