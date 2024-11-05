@@ -27,7 +27,12 @@ class ZhangJiangService
   def access_token
     redis_key = "/zhangjiang/access_token/#{@appid}"
     if $redis.exists(redis_key)
-      $redis.get(redis_key)
+      token = $redis.get(redis_key)
+      if token.present?
+        token
+      else
+        get_access_token
+      end
     else
       get_access_token
     end
@@ -100,7 +105,7 @@ class ZhangJiangService
   private
 
   # 通过 application/json 弄出具
-  def server_http_client(url, method, body = {}, trick = nil)
+  def server_http_client(url, method, body = {}, ticket = nil)
     uri = URI(url)
     request = case method
               when :get
@@ -111,7 +116,7 @@ class ZhangJiangService
     http = Net::HTTP.new(uri.host, uri.port)
     http.use_ssl = true
     request.content_type = 'application/json'
-    request['access_ticket'] = trick if trick.present?
+    request['access_ticket'] = ticket if ticket.present?
     request.body = body.to_json if body.present?
     http.request(request)
   end
@@ -140,10 +145,10 @@ class ZhangJiangService
 
   # 提交数据
   def data_industry_analysis(url, json)
-    trick = access_ticket
+    ticket = access_ticket
     data =  AccessUtilsService.encrypt(json, ZHANGJIANG_USER_KEY)
     body = {data: data}
-    response = server_http_client(url, :post, body, trick)
+    response = server_http_client(url, :post, body, ticket)
     p response
     return nil unless response.code.to_s == '200'
     result = JSON.parse(response.body)

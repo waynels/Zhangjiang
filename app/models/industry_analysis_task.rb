@@ -1,10 +1,17 @@
 class IndustryAnalysisTask < ApplicationRecord
   enum api_method: { enterprise_info: 'enterprise_info', key_enterprise_talent: 'key_enterprise_talent',key_enterprise_financing: 'key_enterprise_financing', key_enterprise_product: 'key_enterprise_product', trends: 'trends', innovation: 'innovation', data_map: 'data_map' }
-  enum send_status: { pending: 'pending', making: 'making', sending: 'sending', finished: 'finished'}
+  enum send_status: { pending: 'pending', making: 'making', sending: 'sending', finished: 'finished', failed: "failed"}
   after_create_commit :rebuild_json_data
 
+
+  after_commit if: :saved_change_to_send_status? do
+    if send_status == 'making'
+      IndustryAnalysisSendJob.perform_later(id)
+    end
+  end
+
   def rebuild_json_data
-    body = send("#{api_method}_json_data")
+    body = public_send("#{api_method}_json_data")
     update(data: body, send_status: 'making')
   end
 
