@@ -19,7 +19,7 @@ class ZhangJiangService
     token = from_http_client(url, :post, body)
     redis_key = "/zhangjiang/access_token/#{@appid}"
     $redis.set(redis_key, token)
-    $redis.expire redis_key, 29.minutes.after.to_i
+    $redis.expire redis_key, 29.minutes.to_i
     token
   end
 
@@ -47,43 +47,43 @@ class ZhangJiangService
   # 3. 企业基本情况接口
   def enterprise_info(json)
     url = API_BASE + "/api/industryAnalysis/enterpriseInfo"
-    data_industry_analysis(url)
+    data_industry_analysis(url, json)
   end
 
   # 4. 重点企业人才接口
   def key_enterprise_talent(json)
     url = API_BASE + "/api/industryAnalysis/keyEnterpriseProduct"
-    data_industry_analysis(url)
+    data_industry_analysis(url, json)
   end
 
   # 5. 重点企业融资接口
   def key_enterprise_financing(json)
     url = API_BASE + "/api/industryAnalysis/keyEnterpriseFinancing"
-    data_industry_analysis(url)
+    data_industry_analysis(url, json)
   end
 
   # 6. 重点企业产品分析接口
   def key_enterprise_product(json)
     url = API_BASE + "/api/industryAnalysis/keyEnterpriseProduct"
-    data_industry_analysis(url)
+    data_industry_analysis(url, json)
   end
 
   # 7. 产业动态接口
   def trends(json)
     url = API_BASE + "/api/industryAnalysis/trends"
-    data_industry_analysis(url)
+    data_industry_analysis(url, json)
   end
 
   # 8. 产业创新分析接口
   def innovation(json)
     url = API_BASE + "/api/industryAnalysis/innovation"
-    data_industry_analysis(url)
+    data_industry_analysis(url, json)
   end
 
   # 9. 产业图谱接口
   def data_map(json)
     url = API_BASE + "/api/industryAnalysis/map"
-    data_industry_analysis(url)
+    data_industry_analysis(url, json)
   end
 
   # 10. 产业宏观分析接口
@@ -134,7 +134,6 @@ class ZhangJiangService
     return nil unless response.code.to_s == '200'
     result = JSON.parse(response.body)
     return nil if result['code'] != 0
-
     result = AccessUtilsService.decrypt(result['data'], ZHANGJIANG_COMMOM_KEY)
     result
   end
@@ -145,8 +144,10 @@ class ZhangJiangService
     data =  AccessUtilsService.encrypt(json, ZHANGJIANG_USER_KEY)
     body = {data: data}
     response = server_http_client(url, :post, body, trick)
+    p response
     return nil unless response.code.to_s == '200'
     result = JSON.parse(response.body)
+    p result
     return nil if result['code'] != 0
     result
   end
