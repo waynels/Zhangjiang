@@ -11,7 +11,7 @@ class TalentImportJob < ApplicationJob
       next if index < 1
       begin
         field = TalentFieldRecord.find_or_initialize_by(record_id: row[0])
-        body = {"name":row[1],"positions":row[2].split_strip,"educations": row[3].split_strip,"professions":row[4].split_strip,"awards":row[5].split_strip,"achievements":row[6].split_strip,"remark":row[7]}
+        body = {"name":row[1],"positions":row[2].split_semicolon,"educations": row[3].split_semicolon,"professions":row[4].split_strip,"awards":row[5].split_semicolon,"achievements":row[6].split_semicolon,"remark":row[7]}
         field.update(name: row[1], table_id: "tbleTvx12bkJHzWa", base_fields: body, enterprise_record_id: row[8])
       rescue ActiveRecord::RecordInvalid => exception
         status = 99
