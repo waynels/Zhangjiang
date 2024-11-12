@@ -6,7 +6,7 @@ class TrendFieldRecord < ApplicationRecord
 
   def enterprises
     return [] if enterprise_record_id.present?
-    ::EnterpriseFieldRecord.where(record_id: enterprise_record_id.split(',')).map(&:info)
+    ::EnterpriseFieldRecord.where(record_id: enterprise_record_id.to_s.split(',').map {|e| e.try(:info)})
   end
 end
 
