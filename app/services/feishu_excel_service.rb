@@ -27,7 +27,7 @@ class FeishuExcelService
 
     body = JSON.parse(records)
     authorization = "Bearer #{feishu_tenant_access_token}"
-    response = server_http_client(url, :POST, body, authorization)
+    response = server_http_client(url, :post, body, authorization)
     if response.code == '200'
       body = JSON.parse(response.body)
       body["data"]
@@ -46,7 +46,7 @@ class FeishuExcelService
     result = JSON.parse(response.body)
     redis_key = "/feishu/tenant_access_token/#{@appid}"
     $redis.set(redis_key, result['tenant_access_token'])
-    $redis.expire redis_key, result['expire'].to_i.seconds.after.to_i - 720
+    $redis.expire redis_key, result['expire'].to_i.seconds.to_i - 60
     result['tenant_access_token']
   end
 
