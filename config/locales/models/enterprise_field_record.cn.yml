@@ -1,0 +1,14 @@
+zh-CN:
+  activerecord:
+    models:
+      enterprise_field_record: 企业信息
+    attributes:
+      enterprise_field_record:
+        acknowledgment: 数据反馈
+        batch: "批次(batch)"
+        batch_updated_at: 批次更新时间
+        base_fields: 数据内容
+        name: 企业名称
+        code: 统一信用代码
+        record_id: 多维表格行记录ID
+        table_id: 多维表格ID

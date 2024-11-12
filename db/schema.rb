@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_31_072601) do
+ActiveRecord::Schema.define(version: 2024_11_08_092706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 2024_10_31_072601) do
     t.string "acknowledgment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "record_ids"
+    t.string "table_id"
   end
 
   create_table "innovation_field_records", id: :uuid, default: -> { "uuid_generate_v4()" }, force: :cascade do |t|

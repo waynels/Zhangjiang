@@ -1,0 +1,13 @@
+zh-CN:
+  activerecord:
+    models:
+      industry_analysis_task: 张江产业分析数据推送
+    attributes:
+      industry_analysis_task:
+        acknowledgment: 数据反馈
+        api_method: 推送接口
+        batch: "批次(batch)"
+        data: 接口内容
+        record_ids: 多维表格行记录ID
+        send_status: 发送状态
+        table_id: 多维表格ID

@@ -12,7 +12,7 @@ class TrendImportJob < ApplicationJob
       begin
         field = TrendFieldRecord.find_or_initialize_by(record_id: row[0])
         body = {"type":row[2],"title": row[1], "body": row[3], "channel": row[4], "significance": row[5], "publishDate": row[6], "source": row[7], "url": row[8] }
-        field.update(table_id: "tblCr2EF9nF9G2z7", base_fields: body, enterprise_record_id: row[9], batch: row[10])
+        field.update(table_id: "tblCr2EF9nF9G2z7", base_fields: body, enterprise_record_id: row[9].to_s, batch: row[10])
         p body
       rescue ActiveRecord::RecordInvalid => exception
         status = 99

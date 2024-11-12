@@ -26,4 +26,3 @@ class EnterpriseImportJob < ApplicationJob
     import.save
   end
 end
-2

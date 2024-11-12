@@ -1,0 +1,15 @@
+zh-CN:
+  activerecord:
+    models:
+      talent_field_record: 重点企业人才信息
+    attributes:
+      talent_field_record:
+        acknowledgment: 数据反馈
+        batch: "批次(batch)"
+        batch_updated_at: 批次更新时间
+        base_fields: 数据内容
+        name: 姓名
+        record_id: 多维表格行记录ID
+        enterprise_record_id: 相关企业记录ID
+        enterprise_field_record: 相关企业
+        table_id: 多维表格ID

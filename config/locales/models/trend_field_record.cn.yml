@@ -1,0 +1,14 @@
+zh-CN:
+  activerecord:
+    models:
+      trend_field_record: 产业动态
+    attributes:
+      trend_field_record:
+        acknowledgment: 数据反馈
+        batch: "批次(batch)"
+        batch_updated_at: 批次更新时间
+        base_fields: 数据内容
+        name: title(未使用)
+        record_id: 多维表格行记录ID
+        enterprise_record_id: 多个企业记录ID
+        table_id: 多维表格ID

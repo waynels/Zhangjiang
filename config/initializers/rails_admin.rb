@@ -88,6 +88,17 @@ RailsAdmin.config do |config|
   end
   config.model 'IndustryAnalysisTask' do
     configure :data, :serialized
+    configure :api_method, :enum do
+      enum do
+        { "企业信息": :enterprise_info, "重点企业人才信息": :key_enterprise_talent, "重点企业融资信息": :key_enterprise_financing, "重点企业产品信息": :key_enterprise_product, "产业动态": :trends, "产业创新分析": :innovation ,"产业图谱企业记录": :data_map }
+      end
+    end
+
+    configure :send_status, :enum do
+      enum do
+        { "准备中": :pending, "数据完成": :making, "发送中": :sending, "对方已接收": :finished, "发送失败": :failed }
+      end
+    end
   end
 
   config.actions do

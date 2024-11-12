@@ -1,0 +1,16 @@
+zh-CN:
+  activerecord:
+    models:
+      feishu_excel_import: 飞书源文档导入
+    attributes:
+      feishu_excel_import:
+        file: "上传文件(excel)"
+        enterprise_status: 企业信息模块
+        graph_status: 产业图谱企业模块
+        innovation_status: 产业创新分析模块
+        product_status: 重点企业产品信息模块
+        round_status: 重点企业融资信息模块
+        talent_status: 重点企业人才信息模块
+        trend_status: 产业动态模块
+        send_status: 发送状态
+        remark: 备注

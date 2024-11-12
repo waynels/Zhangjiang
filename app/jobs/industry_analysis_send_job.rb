@@ -7,6 +7,7 @@ class IndustryAnalysisSendJob < ApplicationJob
     result = server.public_send(task_job.api_method, task_job.data.to_json )
     if result.present?
       task_job.update(send_status: 'finished', acknowledgment: result['data']['acknowledgment'])
+      task_job.feishu_batch_update
     else
       task_job.update(send_status: 'failed')
     end
