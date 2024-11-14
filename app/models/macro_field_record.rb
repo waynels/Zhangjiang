@@ -11,7 +11,7 @@ class MacroFieldRecord < ApplicationRecord
   end
 
   def form_data
-    { file: Rack::Test::UploadedFile.new(file.path), sector: "人工智能", batch: batch, title: title, source: source, author: author, publishDate: publishDate }
+    { file: Rack::Test::UploadedFile.new(file.path), sector: "人工智能", batch: batch, title: title, source: source, author: author, publishDate: publishDate.strftime("%Y-%m-%d") }
   end
 end
 

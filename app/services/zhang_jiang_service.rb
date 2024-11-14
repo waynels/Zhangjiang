@@ -99,7 +99,7 @@ class ZhangJiangService
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri)
     request['access_ticket'] = access_ticket
-    request.set_form item.form_data, 'multipart/form-data'
+    request.set_form_data(item.form_data)
     response = http.request(request)
     return nil unless response.code.to_s == '200'
     result = JSON.parse(response.body)
