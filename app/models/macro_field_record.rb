@@ -4,7 +4,7 @@ class MacroFieldRecord < ApplicationRecord
 
   def send_data_to_zhangjiang
     server = ::ZhangJiangService.new(ENV['ZHANGJIANG_USERID'], ENV['ZHANGJIANG_SECRET'])
-    result = server.macro(task_job.api_method, task_job.data.to_json )
+    result = server.macro(id)
     if result.present?
       update(acknowledgment: result['data']['acknowledgment'], batch_updated_at: Time.new)
     end
