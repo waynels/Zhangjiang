@@ -92,14 +92,20 @@ class ZhangJiangService
   end
 
   # 10. 产业宏观分析接口
-  def macro(form_data)
+  def macro(record_id)
+    item = ::MacroFieldRecord.find(record_id)
     url = API_BASE + "/api/industryAnalysis/macro"
     uri = URI(url)
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri)
     request['access_ticket'] = access_ticket
-    request.set_form form_data, 'multipart/form-data'
+    request.set_form item.form_data, 'multipart/form-data'
     response = http.request(request)
+    return nil unless response.code.to_s == '200'
+    result = JSON.parse(response.body)
+    p result
+    return nil if result['code'] != 0
+    result
   end
 
   private

@@ -11,7 +11,7 @@ class InnovationImportJob < ApplicationJob
       next if index < 1
       begin
         field = InnovationFieldRecord.find_or_initialize_by(record_id: row[0])
-        references = row[7].to_s.split(";;").map {|string| item = string.split("=>"); {title: item[0], url: item[1]}}
+        references = row[7].to_s.split(";;").map {|string| item = string.split("=>"); {title: item[0], url: item[1].try(:to_s).to_s}}
         body = {"type":row[2],"title": row[1], "body": row[3], "publishDate": row[5], "source": row[4], "url": row[6], references: references }
         field.update(table_id: "tblQdd1uPMSLrl3C", base_fields: body, batch: row[8])
         p body

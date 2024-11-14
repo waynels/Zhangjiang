@@ -1,5 +1,18 @@
 class MacroFieldRecord < ApplicationRecord
   mount_uploader :file, PdfUploader
+  enum sector: { ai: 1 }
+
+  def send_data_to_zhangjiang
+    server = ::ZhangJiangService.new(ENV['ZHANGJIANG_USERID'], ENV['ZHANGJIANG_SECRET'])
+    result = server.macro(task_job.api_method, task_job.data.to_json )
+    if result.present?
+      update(acknowledgment: result['data']['acknowledgment'], batch_updated_at: Time.new)
+    end
+  end
+
+  def form_data
+    { file: Rack::Test::UploadedFile.new(file.path), sector: "人工智能", batch: batch, title: title, source: source, author: author, publishDate: publishDate }
+  end
 end
 
 # == Schema Information

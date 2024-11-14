@@ -65,6 +65,14 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'MacroFieldRecord' do
+    configure :sector, :enum do
+      enum do
+        { "人工智能": :ai }
+      end
+    end
+  end
+
   config.model 'EnterpriseFieldRecord' do
     configure :base_fields, :serialized
   end
