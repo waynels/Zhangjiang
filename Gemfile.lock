@@ -146,7 +146,6 @@ GEM
     erubi (1.13.0)
     execjs (2.8.1)
     ffi (1.17.0)
-    ffi (1.17.0-arm64-darwin)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
@@ -211,6 +210,7 @@ GEM
     mini_mime (1.1.5)
     minitest (5.25.1)
     msgpack (1.7.3)
+    multipart-post (2.4.1)
     nested_form (0.3.2)
     net-imap (0.4.16)
       date
@@ -412,6 +412,7 @@ DEPENDENCIES
   http
   jbuilder (~> 2.7)
   listen (~> 3.3)
+  multipart-post (~> 2.4, >= 2.4.1)
   pg (~> 1.1)
   pry-rails (~> 0.3.9)
   puma (~> 5.0)
