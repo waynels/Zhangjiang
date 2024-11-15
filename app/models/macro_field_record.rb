@@ -39,7 +39,11 @@ class MacroFieldRecord < ApplicationRecord
       data << "#{item[:value]}\r\n"
     end
     data << "--#{boundary}--\r\n"
-    [boundary, data.join("\r\n")]
+    [boundary, data.join]
+  end
+
+  def form_data
+    { file: UploadIO.new(file.path, "application/pdf", File.basename(file.path)), sector: "人工智能", batch: batch, title: title, source: source, author: author, publishDate: publishDate.strftime("%Y-%m-%d") }
   end
 end
 

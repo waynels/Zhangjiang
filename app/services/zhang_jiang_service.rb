@@ -91,25 +91,45 @@ class ZhangJiangService
     data_industry_analysis(url, json)
   end
 
+  # # 10. 产业宏观分析接口
+  # def macro1(record_id)
+  #   item = ::MacroFieldRecord.find(record_id)
+  #   boundary, body = item.body_parts
+  #   url = API_BASE + "/api/industryAnalysis/macro"
+  #   uri = URI(url)
+  #   http = Net::HTTP.new(uri.host, uri.port)
+  #   request = Net::HTTP::Post::Multipart.new(uri.path, item.form_data)
+  #   http.use_ssl = true # 因为是https请求，启用SSL
+  #   request = Net::HTTP::Post.new(uri.request_uri)
+  #   request['access_ticket'] = access_ticket
+  #   request["Content-Type"] = "multipart/form-data; boundary=#{boundary}"
+  #   request.body = body
+  #   response = http.request(request)
+  #   return nil unless response.code.to_s == '200'
+  #   result = JSON.parse(response.body)
+  #   p result
+  #   return nil if result['code'] != 0
+  #   result
+  # end
+
   # 10. 产业宏观分析接口
   def macro(record_id)
     item = ::MacroFieldRecord.find(record_id)
-    boundary, body = item.body_parts
     url = API_BASE + "/api/industryAnalysis/macro"
     uri = URI(url)
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true # 因为是https请求，启用SSL
-    request = Net::HTTP::Post.new(uri.request_uri)
-    request['access_ticket'] = access_ticket
-    request["Content-Type"] = "multipart/form-data; boundary=#{boundary}"
-    request.body = body
-    response = http.request(request)
+    response = Net::HTTP.start(uri.host, uri.port) do |http|
+      req = Net::HTTP::Post::Multipart.new(uri, item.form_data)
+      req.add_field("access_ticket", access_ticket)
+      http.use_ssl = (uri.scheme == "https")
+      http.request(req)
+    end
     return nil unless response.code.to_s == '200'
     result = JSON.parse(response.body)
     p result
     return nil if result['code'] != 0
     result
   end
+
 
   private
 
