@@ -43,6 +43,7 @@ gem 'pry-rails', '~> 0.3.9'
 gem 'roo', '~> 2.10', '>= 2.10.1'
 gem 'carrierwave', '~> 3.0'
 gem 'multipart-post', '~> 2.4', '>= 2.4.1'
+gem 'rest-client', '~> 2.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -45,6 +45,10 @@ class MacroFieldRecord < ApplicationRecord
   def form_data
     { file: UploadIO.new(file.path, "application/pdf", File.basename(file.path)), sector: "人工智能", batch: batch, title: title, source: source, author: author, publishDate: publishDate.strftime("%Y-%m-%d") }
   end
+
+  def data_form
+    { file: File.new(file.path, 'rb'), sector: "人工智能", batch: batch, title: title, source: source, author: author, publishDate: publishDate.strftime("%Y-%m-%d") }
+  end
 end
 
 # == Schema Information

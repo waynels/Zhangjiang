@@ -1,3 +1,6 @@
+require 'net/http/post/multipart'
+require 'rest-client'
+require 'json'
 class ZhangJiangService
   attr_accessor :appid, :app_secret
   API_BASE = 'https://zjkxc.pudong.gov.cn/zjip-admin'.freeze
@@ -113,23 +116,40 @@ class ZhangJiangService
   # end
 
   # 10. 产业宏观分析接口
+  # def macro(record_id)
+  #   item = ::MacroFieldRecord.find(record_id)
+  #   url = API_BASE + "/api/industryAnalysis/macro"
+  #   uri = URI(url)
+
+  #   http = Net::HTTP.start(uri.host, uri.port)
+  #   req = Net::HTTP::Post::Multipart.new(uri, item.form_data)
+  #   req["access_ticket"] = access_ticket
+  #   response = http.request(req)
+  #   p response
+  #   return nil unless response.code.to_s == '200'
+  #   result = JSON.parse(response.body)
+  #   p result
+  #   return nil if result['code'] != 0
+  #   result
+  # end
+  #
+  #
+
+  # 10. 产业宏观分析接口
   def macro(record_id)
     item = ::MacroFieldRecord.find(record_id)
     url = API_BASE + "/api/industryAnalysis/macro"
-    uri = URI(url)
-    response = Net::HTTP.start(uri.host, uri.port) do |http|
-      req = Net::HTTP::Post::Multipart.new(uri, item.form_data)
-      req.add_field("access_ticket", access_ticket)
-      http.use_ssl = (uri.scheme == "https")
-      http.request(req)
-    end
+    response = RestClient.post(url, item.data_form, {
+      'access_ticket': access_ticket,
+      'Content-Type': 'multipart/form-data'
+    })
+    p response
     return nil unless response.code.to_s == '200'
     result = JSON.parse(response.body)
     p result
     return nil if result['code'] != 0
     result
   end
-
 
   private
 
