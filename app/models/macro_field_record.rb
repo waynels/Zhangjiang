@@ -43,7 +43,7 @@ class MacroFieldRecord < ApplicationRecord
   end
 
   def form_data
-    { file: UploadIO.new(file.path, "application/pdf", File.basename(file.path)), sector: "人工智能", batch: batch, title: title, source: source, author: author, publishDate: publishDate.strftime("%Y-%m-%d") }
+    { file: Faraday::UploadIO.new(file.path, 'application/pdf'), sector: "人工智能", batch: batch, title: title, source: source, author: author, publishDate: publishDate.strftime("%Y-%m-%d") }
   end
 
   def data_form

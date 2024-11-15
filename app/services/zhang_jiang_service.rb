@@ -139,10 +139,17 @@ class ZhangJiangService
   def macro(record_id)
     item = ::MacroFieldRecord.find(record_id)
     url = API_BASE + "/api/industryAnalysis/macro"
-    response = RestClient.post(url, item.data_form, {
-      'access_ticket': access_ticket,
-      'Content-Type': 'multipart/form-data'
-    })
+
+    connection = Faraday.new(url: url) do |faraday|
+      faraday.request :multipart
+      faraday.request :url_encoded
+      faraday.adapter :net_http
+    end
+
+    response = connection.post do |req|
+      req.headers['access_ticket'] = ticket
+      req.body = item.form_data
+    end
     p response
     return nil unless response.code.to_s == '200'
     result = JSON.parse(response.body)

@@ -44,7 +44,8 @@ gem 'roo', '~> 2.10', '>= 2.10.1'
 gem 'carrierwave', '~> 3.0'
 gem 'multipart-post', '~> 2.4', '>= 2.4.1'
 gem 'rest-client', '~> 2.1'
-
+# gem 'faraday', '~> 2.12', '>= 2.12.1'
+gem 'faraday_middleware', '~> 1.2', '>= 1.2.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
