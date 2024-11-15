@@ -147,13 +147,11 @@ class ZhangJiangService
     end
 
     response = connection.post do |req|
-      req.headers['access_ticket'] = ticket
+      req.headers['access_ticket'] = access_ticket
       req.body = item.form_data
     end
-    p response
-    return nil unless response.code.to_s == '200'
+    return nil unless response.status.to_s == '200'
     result = JSON.parse(response.body)
-    p result
     return nil if result['code'] != 0
     result
   end
