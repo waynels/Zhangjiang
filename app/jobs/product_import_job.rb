@@ -12,7 +12,7 @@ class ProductImportJob < ApplicationJob
       begin
         field = ProductFieldRecord.find_or_initialize_by(record_id: row[0])
         body = {"name":row[1],"body": row[2]}
-        field.update(name: row[1], table_id: "tblzWemRbHEXpIoj", base_fields: body, enterprise_record_id: row[3])
+        field.update(name: row[1], table_id: "tblzWemRbHEXpIoj", base_fields: body, batch: row[3], enterprise_record_id: row[4])
         p body
       rescue ActiveRecord::RecordInvalid => exception
         status = 99

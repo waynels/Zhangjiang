@@ -60,7 +60,7 @@ class ZhangJiangService
 
   # 4. 重点企业人才接口
   def key_enterprise_talent(json)
-    url = API_BASE + "/api/industryAnalysis/keyEnterpriseProduct"
+    url = API_BASE + "/api/industryAnalysis/keyEnterpriseTalent"
     data_industry_analysis(url, json)
   end
 

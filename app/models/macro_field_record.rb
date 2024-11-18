@@ -62,7 +62,7 @@ end
 #  batch_updated_at :datetime
 #  file             :string
 #  publishDate      :datetime
-#  sector           :integer          default(1)
+#  sector           :integer          default("ai")
 #  source           :string
 #  title            :string
 #  created_at       :datetime         not null

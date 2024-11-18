@@ -20,7 +20,7 @@ class GraphImportJob < ApplicationJob
           body = {"title": row[5], area: area }
         end
         p body
-        field.update(table_id: "tbltzsmAUdkoSJk7", "level1": row[3], "level2": row[4], base_fields: body, enterprise_record_id: row[2])
+        field.update(table_id: "tbltzsmAUdkoSJk7", "level1": row[3], "level2": row[4], base_fields: body, batch: row[8], enterprise_record_id: row[2])
       rescue ActiveRecord::RecordInvalid => exception
         status = 99
         import.remark = import.remark + "#{row}#{exception.message}"

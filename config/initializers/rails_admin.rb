@@ -63,6 +63,10 @@ RailsAdmin.config do |config|
         { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
       end
     end
+    list do
+      sort_by :created_at
+      sort_reverse true
+    end
   end
 
   config.model 'MacroFieldRecord' do
@@ -71,28 +75,60 @@ RailsAdmin.config do |config|
         { "人工智能": :ai }
       end
     end
+    list do
+      sort_by :created_at
+      sort_reverse true
+    end
   end
 
   config.model 'EnterpriseFieldRecord' do
     configure :base_fields, :serialized
+    list do
+      sort_by :created_at
+      sort_reverse true
+    end
   end
   config.model 'GraphFieldRecord' do
     configure :base_fields, :serialized
+    list do
+      sort_by :created_at
+      sort_reverse true
+    end
   end
   config.model 'InnovationFieldRecord' do
     configure :base_fields, :serialized
+    list do
+      sort_by :created_at
+      sort_reverse true
+    end
   end
   config.model 'ProductFieldRecord' do
     configure :base_fields, :serialized
+    list do
+      sort_by :created_at
+      sort_reverse true
+    end
   end
   config.model 'RoundFieldRecord' do
     configure :base_fields, :serialized
+    list do
+      sort_by :created_at
+      sort_reverse true
+    end
   end
   config.model 'TalentFieldRecord' do
     configure :base_fields, :serialized
+    list do
+      sort_by :created_at
+      sort_reverse true
+    end
   end
   config.model 'TrendFieldRecord' do
     configure :base_fields, :serialized
+    list do
+      sort_by :created_at
+      sort_reverse true
+    end
   end
   config.model 'IndustryAnalysisTask' do
     configure :data, :serialized
@@ -106,6 +142,10 @@ RailsAdmin.config do |config|
       enum do
         { "准备中": :pending, "数据完成": :making, "发送中": :sending, "对方已接收": :finished, "发送失败": :failed }
       end
+    end
+    list do
+      sort_by :created_at
+      sort_reverse true
     end
   end
 

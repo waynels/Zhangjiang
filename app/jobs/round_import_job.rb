@@ -12,7 +12,7 @@ class RoundImportJob < ApplicationJob
       begin
         field = RoundFieldRecord.find_or_initialize_by(record_id: row[0])
         body = {"name":row[1],"amount":row[2],"institutions": row[3].split_strip,"date": row[4]}
-        field.update(name: row[1], table_id: "tbln8iAx3QRZZeUM", base_fields: body, enterprise_record_id: row[5])
+        field.update(name: row[1], table_id: "tbln8iAx3QRZZeUM", base_fields: body, batch: row[5], enterprise_record_id: row[6])
       rescue ActiveRecord::RecordInvalid => exception
         status = 99
         import.remark = import.remark + "#{row}#{exception.message}"

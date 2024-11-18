@@ -17,7 +17,7 @@ class EnterpriseFieldRecord < ApplicationRecord
   end
 
   def products_info
-    { code: code, name: name, "rounds": product_field_records.map(&:base_fields) }
+    { code: code, name: name, "products": product_field_records.map(&:base_fields) }
   end
 
 end
