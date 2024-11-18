@@ -22,9 +22,9 @@ class IndustryAnalysisTask < ApplicationRecord
 
   def key_enterprise_talent_json_data
     fields = ::TalentFieldRecord.where(batch: batch)
-    enterprises = fields.group_by(:enterprise_record_id).map do |enterprise_id, items|
+    enterprises = fields.group_by(&:enterprise_record_id).map do |enterprise_id, items|
       enterprise = ::EnterpriseFieldRecord.find_by(record_id: enterprise_id)
-      { code: enterprise.code, name: enterprise.name, talents: items.map(&base_fields)}
+      { code: enterprise.code, name: enterprise.name, talents: items.map(&:base_fields)}
     end
     update(record_ids: fields.pluck(:record_id), table_id: 'tbleTvx12bkJHzWa')
     { "sector": "人工智能", "batch": batch, "strategy": 2, "enterprises": enterprises }
@@ -32,9 +32,9 @@ class IndustryAnalysisTask < ApplicationRecord
 
   def key_enterprise_financing_json_data
     fields = ::RoundFieldRecord.where(batch: batch)
-    enterprises = fields.group_by(:enterprise_record_id).map do |enterprise_id, items|
+    enterprises = fields.group_by(&:enterprise_record_id).map do |enterprise_id, items|
       enterprise = ::EnterpriseFieldRecord.find_by(record_id: enterprise_id)
-      { code: enterprise.code, name: enterprise.name, rounds: items.map(&base_fields)}
+      { code: enterprise.code, name: enterprise.name, rounds: items.map(&:base_fields)}
     end
     update(record_ids: fields.pluck(:record_id), table_id: 'tbln8iAx3QRZZeUM')
     { "sector": "人工智能", "batch": batch, "strategy": 2, "enterprises": enterprises }
@@ -42,9 +42,9 @@ class IndustryAnalysisTask < ApplicationRecord
 
   def key_enterprise_product_json_data
     fields = ::ProductFieldRecord.where(batch: batch)
-    enterprises = fields.group_by(:enterprise_record_id).map do |enterprise_id, items|
+    enterprises = fields.group_by(&:enterprise_record_id).map do |enterprise_id, items|
       enterprise = ::EnterpriseFieldRecord.find_by(record_id: enterprise_id)
-      { code: enterprise.code, name: enterprise.name, products: items.map(&base_fields)}
+      { code: enterprise.code, name: enterprise.name, products: items.map(&:base_fields)}
     end
     update(record_ids: fields.pluck(:record_id), table_id: 'tblzWemRbHEXpIoj')
     { "sector": "人工智能", "batch": batch, "strategy": 2, "enterprises": enterprises }
