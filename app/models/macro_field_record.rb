@@ -2,6 +2,8 @@ class MacroFieldRecord < ApplicationRecord
   mount_uploader :file, PdfUploader
   enum sector: { ai: 1 }
 
+  after_create_commit :send_data_to_zhangjiang
+
   def send_data_to_zhangjiang
     server = ::ZhangJiangService.new(ENV['ZHANGJIANG_USERID'], ENV['ZHANGJIANG_SECRET'])
     result = server.macro(id)

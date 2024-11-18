@@ -13,13 +13,7 @@ class FeishuExcelService
     body = { }
     authorization = "Bearer #{feishu_tenant_access_token}"
     p authorization
-    response = server_http_client(url, :get, body, authorization)
-    if response.code == '200'
-      body = JSON.parse(response.body)
-      body["data"]
-    else
-      p 'get table error'
-    end
+    server_http_client(url, :get, body, authorization)
   end
 
   def batch_update(app_token, table_id, records)
@@ -46,7 +40,7 @@ class FeishuExcelService
     result = JSON.parse(response.body)
     redis_key = "/feishu/tenant_access_token/#{@appid}"
     $redis.set(redis_key, result['tenant_access_token'])
-    $redis.expire redis_key, result['expire'].to_i.seconds.to_i - 60
+    $redis.expire redis_key, result['expire'].to_i - 10
     result['tenant_access_token']
   end
 
