@@ -21,13 +21,7 @@ class FeishuExcelService
 
     body = JSON.parse(records)
     authorization = "Bearer #{feishu_tenant_access_token}"
-    response = server_http_client(url, :post, body, authorization)
-    if response.code == '200'
-      body = JSON.parse(response.body)
-      body["data"]
-    else
-      p 'get table error'
-    end
+    server_http_client(url, :post, body, authorization)
   end
 
   def tenant_access_token
