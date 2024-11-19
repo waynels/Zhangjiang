@@ -34,7 +34,7 @@ class FeishuExcelService
     result = JSON.parse(response.body)
     redis_key = "/feishu/tenant_access_token/#{@appid}"
     $redis.set(redis_key, result['tenant_access_token'])
-    $redis.expire redis_key, result['expire'].to_i - 10
+    $redis.expire redis_key, result['expire'].to_i - 60
     result['tenant_access_token']
   end
 
