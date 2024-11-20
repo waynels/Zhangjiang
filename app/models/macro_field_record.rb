@@ -13,6 +13,9 @@ class MacroFieldRecord < ApplicationRecord
     # end
   end
 
+  after_commit if: :saved_change_to_file? do
+    ::MacroSendJob.perform_later(id)
+  end
 
   def body_parts
     boundary = "----WebKitFormBoundary#{SecureRandom.hex(16)}"

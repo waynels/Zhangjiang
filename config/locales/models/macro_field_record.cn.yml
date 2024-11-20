@@ -1,0 +1,17 @@
+zh-CN:
+  activerecord:
+    models:
+      macro_field_record: 产业宏观分析
+    attributes:
+      macro_field_record:
+        table_id: TableID(不填)
+        record_id: "记录ID(不填)"
+        batch_updated_at: 批次更新时间(自动)
+        author: 作者(author)
+        batch: 批次(batch)
+        file: 上传文档(pdf)
+        publishDate: 发布时间(publishDate)
+        sector: 产业(默认人工智能)
+        source: 数据来源(source)
+        title: 标题(title)
+        acknowledgment: 数据反馈(自动)
