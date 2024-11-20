@@ -5,11 +5,12 @@ class MacroFieldRecord < ApplicationRecord
   after_create_commit :send_data_to_zhangjiang
 
   def send_data_to_zhangjiang
-    server = ::ZhangJiangService.new(ENV['ZHANGJIANG_USERID'], ENV['ZHANGJIANG_SECRET'])
-    result = server.macro(id)
-    if result.present?
-      update(acknowledgment: result['data']['acknowledgment'], batch_updated_at: Time.new)
-    end
+    ::MacroSendJob.perform_later(id)
+    # server = ::ZhangJiangService.new(ENV['ZHANGJIANG_USERID'], ENV['ZHANGJIANG_SECRET'])
+    # result = server.macro(id)
+    # if result.present?
+    #   update(acknowledgment: result['data']['acknowledgment'], batch_updated_at: Time.new)
+    # end
   end
 
 
