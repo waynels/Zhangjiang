@@ -12,3 +12,45 @@ zh-CN:
       macro_field_record: 产业宏观分析
       feishu_excel_import: 飞书源文档导入
       industry_analysis_task: 张江产业分析数据推送
+  enterprise_status:
+    pending: 待执行
+    success: 导入成功
+    failed:  导入失败
+  graph_status:
+    pending: 待执行
+    success: 导入成功
+    failed:  导入失败
+  innovation_status:
+    pending: 待执行
+    success: 导入成功
+    failed:  导入失败
+  product_status:
+    pending: 待执行
+    success: 导入成功
+    failed:  导入失败
+  round_status:
+    pending: 待执行
+    success: 导入成功
+    failed:  导入失败
+  talent_status:
+    pending: 待执行
+    success: 导入成功
+    failed:  导入失败
+  trend_status:
+    pending: 待执行
+    success: 导入成功
+    failed:  导入失败
+  api_method:
+    enterprise_info: 企业信息
+    key_enterprise_talent: 重点企业人才信息
+    key_enterprise_financing: 重点企业融资信息
+    key_enterprise_product: 重点企业产品信息
+    trends: 产业动态
+    innovation: 产业创新分析
+    data_map: 产业图谱企业记录
+  send_status:
+    pending: 准备中
+    making: 数据完成
+    sending: 发送中
+    finished: 已完成
+    failed: 发送失败

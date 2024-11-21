@@ -22,6 +22,35 @@ class FeishuExcelImport < ApplicationRecord
     ::GraphImportJob.perform_later(id, file_path)
   end
 
+  # def enterprise_status_cn
+  #   hash = {pending: '待执行', success: '导入成功', failed: '导入失败'}
+  #   hash[enterprise_status]
+  # end
+  # def product_status_cn
+  #   hash = {pending: '待执行', success: '导入成功', failed: '导入失败'}
+  #   hash[product_status]
+  # end
+  # def graph_status_cn
+  #   hash = {pending: '待执行', success: '导入成功', failed: '导入失败'}
+  #   hash[graph_status]
+  # end
+  # def innovation_status_cm
+  #   hash = {pending: '待执行', success: '导入成功', failed: '导入失败'}
+  #   hash[innovation_status]
+  # end
+  # def round_status_cn
+  #   hash = {pending: '待执行', success: '导入成功', failed: '导入失败'}
+  #   hash[round_status]
+  # end
+  # def talent_status_cn
+  #   hash = {pending: '待执行', success: '导入成功', failed: '导入失败'}
+  #   hash[talent_status]
+  # end
+  # def trend_status_cn
+  #    hash = {pending: '待执行', success: '导入成功', failed: '导入失败'}
+  #    hash[trend_status]
+  # end
+
   def excel_path
     if Rails.env.development?
       file.path

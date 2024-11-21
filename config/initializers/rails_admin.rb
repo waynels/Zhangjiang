@@ -28,39 +28,14 @@ RailsAdmin.config do |config|
   # config.show_gravatar = true
   #
   config.model 'FeishuExcelImport' do
-    configure :enterprise_status, :enum do
-      enum do
-        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
-      end
+    edit do
+      field :file
     end
-    configure :product_status, :enum do
-      enum do
-        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
-      end
-    end
-    configure :graph_status, :enum do
-      enum do
-        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
-      end
-    end
-    configure :innovation_status, :enum do
-      enum do
-        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
-      end
-    end
-    configure :round_status, :enum do
-      enum do
-        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
-      end
-    end
-    configure :talent_status, :enum do
-      enum do
-        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
-      end
-    end
-    configure :trend_status, :enum do
-      enum do
-        { "待执行": :pending, "导入成功": :success, "导入失败": :failed }
+  %w[enterprise graph innovation product round talent trend].each do |item|
+      configure :"#{item}_status", :enum do
+        pretty_value do
+          bindings[:view].t("#{item}_status.#{bindings[:object].try("#{item}_status").to_s}")
+        end
       end
     end
     list do
@@ -145,17 +120,24 @@ RailsAdmin.config do |config|
     end
   end
   config.model 'IndustryAnalysisTask' do
+
     configure :data, :serialized
     configure :api_method, :enum do
       enum do
         { "企业信息": :enterprise_info, "重点企业人才信息": :key_enterprise_talent, "重点企业融资信息": :key_enterprise_financing, "重点企业产品信息": :key_enterprise_product, "产业动态": :trends, "产业创新分析": :innovation ,"产业图谱企业记录": :data_map }
       end
-    end
-
-    configure :send_status, :enum do
-      enum do
-        { "准备中": :pending, "数据完成": :making, "发送中": :sending, "对方已接收": :finished, "发送失败": :failed }
+      pretty_value do
+        bindings[:view].t("api_method.#{bindings[:object].api_method.to_s}")
       end
+    end
+    configure :send_status, :enum do
+      pretty_value do
+        bindings[:view].t("send_status.#{bindings[:object].send_status.to_s}")
+      end
+    end
+    edit do
+      field :batch
+      field :api_method
     end
     list do
       sort_by :created_at

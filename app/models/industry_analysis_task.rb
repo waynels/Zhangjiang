@@ -27,7 +27,7 @@ class IndustryAnalysisTask < ApplicationRecord
       { code: enterprise.code, name: enterprise.name, talents: items.map(&:base_fields)}
     end
     update(record_ids: fields.pluck(:record_id), table_id: 'tbleTvx12bkJHzWa')
-    { "sector": "人工智能", "batch": batch, "strategy": 2, "enterprises": enterprises }
+    { "sector": "人工智能", "batch": batch, "strategy": 1, "enterprises": enterprises }
   end
 
   def key_enterprise_financing_json_data
@@ -37,7 +37,7 @@ class IndustryAnalysisTask < ApplicationRecord
       { code: enterprise.code, name: enterprise.name, rounds: items.map(&:base_fields)}
     end
     update(record_ids: fields.pluck(:record_id), table_id: 'tbln8iAx3QRZZeUM')
-    { "sector": "人工智能", "batch": batch, "strategy": 2, "enterprises": enterprises }
+    { "sector": "人工智能", "batch": batch, "strategy": 1, "enterprises": enterprises }
   end
 
   def key_enterprise_product_json_data
@@ -47,7 +47,7 @@ class IndustryAnalysisTask < ApplicationRecord
       { code: enterprise.code, name: enterprise.name, products: items.map(&:base_fields)}
     end
     update(record_ids: fields.pluck(:record_id), table_id: 'tblzWemRbHEXpIoj')
-    { "sector": "人工智能", "batch": batch, "strategy": 2, "enterprises": enterprises }
+    { "sector": "人工智能", "batch": batch, "strategy": 1, "enterprises": enterprises }
   end
 
   def trends_json_data
