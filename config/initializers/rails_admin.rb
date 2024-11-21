@@ -70,12 +70,26 @@ RailsAdmin.config do |config|
   end
 
   config.model 'MacroFieldRecord' do
-    configure :sector, :enum do
-      enum do
-        { "人工智能": :ai }
-      end
+    edit do
+      field :batch
+      field :title
+      field :file
+      field :source
+      field :author
+      field :publishDate
     end
     list do
+      field :id
+      field :batch
+      field :title
+      field :file
+      field :source
+      field :author
+      field :publishDate
+      field :acknowledgment
+      field :batch_updated_at
+      field :created_at
+      field :updated_at
       sort_by :created_at
       sort_reverse true
     end
